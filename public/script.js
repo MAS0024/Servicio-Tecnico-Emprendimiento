@@ -83,10 +83,6 @@ const servicesList = [
     { task: "Cambio de batería", device: "NOTEBOOK", price: 5000 }
 ];
 
-// ==========================================
-// 4. LÓGICA DEL INICIO (INDEX.HTML)
-// ==========================================
-
 const productsContainer = document.getElementById("view-products");
 if (productsContainer) {
     products.forEach(p => {
@@ -115,10 +111,10 @@ if (productsContainer) {
     };
 }
 
-// RENDERIZADO DE LA TABLA DE SERVICIOS
+
 const servicesContainer = document.getElementById("view-services");
 if (servicesContainer) {
-    // 1. Crear encabezado de la tabla (Visible solo en PC por CSS)
+
     const header = document.createElement("div");
     header.className = "service-table-header";
     header.innerHTML = `
@@ -129,12 +125,10 @@ if (servicesContainer) {
     `;
     servicesContainer.appendChild(header);
 
-    // 2. Crear filas
     servicesList.forEach(s => {
-        const msg = `Hola Luciano! Necesito el servicio de: ${s.task} para mi ${s.device}.`;
+        const msg = `Hola! Necesito el servicio de: ${s.task} para mi ${s.device}.`;
         const link = `https://wa.me/${CELULAR_VENDEDOR}?text=${encodeURIComponent(msg)}`;
         
-        // Formatear precio (si es número le pone signo $, si es texto lo deja igual)
         let displayPrice = typeof s.price === 'number' ? `$${s.price.toLocaleString("es-AR")}` : s.price;
 
         const row = document.createElement("div");
@@ -184,9 +178,6 @@ window.switchTab = function(tabName) {
 }
 
 
-// ==========================================
-// 5. LÓGICA DEL DETALLE (PRODUCT.HTML)
-// ==========================================
 const detailTitle = document.getElementById("prod-title");
 
 if (detailTitle) {
