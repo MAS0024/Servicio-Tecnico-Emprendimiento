@@ -1,17 +1,11 @@
-/* =========================================
-   1. VARIABLES Y CONFIGURACIÓN BASE
-   ========================================= */
 :root {
-    --bg-color: #0a0a0a;         /* Negro profundo */
-    --card-bg: #171717;          /* Gris oscuro para tarjetas */
-    
-    /* COLOR PRINCIPAL: CELESTE NEÓN */
-    --accent: #00C2FF;           
-    --accent-hover: #009ecf;     
-    --glow-color: rgba(0, 194, 255, 0.2); /* Resplandor */
-    
+    --bg-color: #0a0a0a;
+    --card-bg: #171717;
+    --accent: #00C2FF;
+    --accent-hover: #009ecf;
+    --glow-color: rgba(0, 194, 255, 0.2);
     --text-main: #ffffff;
-    --text-sec: #a1a1a1;         /* Gris claro para textos secundarios */
+    --text-sec: #a1a1a1;
 }
 
 * { box-sizing: border-box; }
@@ -21,16 +15,13 @@ body {
     color: var(--text-main);
     font-family: 'League Spartan', sans-serif;
     margin: 0;
-    min-height: 100vh;           /* Ocupa toda la altura */
+    min-height: 100vh;
     display: flex;
-    flex-direction: column;      /* Para que el footer baje al final */
+    flex-direction: column;
 }
 
 a { text-decoration: none; color: inherit; }
 
-/* =========================================
-   2. ENCABEZADO (HEADER)
-   ========================================= */
 header {
     padding: 2rem;
     text-align: center;
@@ -43,15 +34,11 @@ header {
     font-weight: 700;
     letter-spacing: -1px;
     margin: 0;
-    /* Texto con gradiente */
     background: linear-gradient(to right, #fff, var(--accent));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-/* =========================================
-   3. MENÚ DE NAVEGACIÓN (PESTAÑAS)
-   ========================================= */
 .category-menu {
     display: flex;
     justify-content: center;
@@ -85,25 +72,19 @@ header {
 
 .tab-btn.active {
     background-color: var(--accent);
-    color: #000; /* Texto negro para contraste */
+    color: #000;
     border-color: var(--accent);
     box-shadow: 0 0 25px var(--glow-color);
 }
 
-/* =========================================
-   4. CONTENEDOR PRINCIPAL
-   ========================================= */
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px 60px 20px;
-    flex: 1; /* Empuja el footer hacia abajo */
+    flex: 1;
     width: 100%;
 }
 
-/* =========================================
-   5. TARJETAS DE PRODUCTOS (VENTA)
-   ========================================= */
 .cards-grid {
     display: flex;
     flex-wrap: wrap;
@@ -130,7 +111,6 @@ header {
     border-color: rgba(0, 194, 255, 0.4);
 }
 
-/* Efecto de luz siguiendo al mouse */
 .card::before {
     content: "";
     position: absolute;
@@ -139,13 +119,10 @@ header {
     opacity: 0;
     transition: opacity 0.4s;
     pointer-events: none;
-    background: radial-gradient(
-        600px circle at var(--mouse-x) var(--mouse-y), 
-        var(--glow-color), 
-        transparent 40%
-    );
+    background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), var(--glow-color), transparent 40%);
     z-index: 1;
 }
+
 .cards-grid:hover .card::before { opacity: 1; }
 
 .card-content {
@@ -159,7 +136,7 @@ header {
 
 .card-img {
     width: 100%; height: 200px; object-fit: cover;
-    border-radius: 12px; margin-bottom: 20px; 
+    border-radius: 12px; margin-bottom: 20px;
     background-color: #222;
 }
 
@@ -179,43 +156,64 @@ header {
 }
 .btn-primary:hover { background-color: var(--accent); color: white; }
 
-/* =========================================
-   6. LISTA DE SERVICIOS (REPARACIÓN)
-   ========================================= */
 .services-container {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
-.service-card {
-    background-color: var(--card-bg);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    padding: 25px;
-    margin-bottom: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: transform 0.2s, background 0.2s;
+.service-table-header {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 1fr auto;
+    padding: 15px 25px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 12px 12px 0 0;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
 }
 
-.service-card:hover {
-    transform: translateX(10px);
-    border-left: 4px solid var(--accent);
+.service-row {
+    background-color: var(--card-bg);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 1fr auto;
+    align-items: center;
+    padding: 20px 25px;
+    transition: background 0.2s;
+}
+
+.service-row:last-child {
+    border-bottom: none;
+    border-radius: 0 0 12px 12px;
+}
+
+.service-row:hover {
     background-color: rgba(255, 255, 255, 0.03);
 }
 
-.service-info h3 { margin: 0 0 5px 0; font-size: 1.3rem; color: white; }
-.service-info p { margin: 0; color: var(--text-sec); font-size: 0.95rem; }
+.col-task { font-weight: 600; font-size: 1.1rem; color: #fff; }
+.col-device { color: var(--text-sec); font-size: 0.95rem; }
+.col-price { font-weight: 700; color: var(--accent); font-size: 1.2rem; }
 
-.service-price {
-    font-size: 1.5rem; font-weight: 700; color: var(--accent);
-    white-space: nowrap; text-align: right;
+.btn-icon-wsp {
+    color: var(--accent);
+    font-size: 1.5rem;
+    padding: 8px;
+    border-radius: 50%;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* =========================================
-   7. PÁGINA DE DETALLE (PRODUCT.HTML)
-   ========================================= */
+.btn-icon-wsp:hover {
+    background-color: var(--accent);
+    color: #000;
+    box-shadow: 0 0 15px var(--glow-color);
+}
+
 .detail-layout { display: flex; flex-wrap: wrap; gap: 50px; margin-top: 20px; }
 .gallery-col { flex: 1 1 400px; }
 .info-col { flex: 1 1 400px; }
@@ -237,7 +235,6 @@ header {
 .detail-price { font-size: 3rem; color: var(--accent); font-weight: 700; margin-bottom: 30px; }
 .detail-desc { color: var(--text-sec); line-height: 1.8; font-size: 1.1rem; margin-bottom: 30px; }
 
-/* Caja de Especificaciones Técnicas */
 .specs-box {
     background-color: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -259,7 +256,6 @@ header {
 }
 .specs-list li i { color: var(--accent); font-size: 0.9rem; }
 
-/* Botón WhatsApp Grande */
 .btn-whatsapp-large {
     background-color: transparent;
     border: 2px solid var(--accent);
@@ -278,9 +274,6 @@ header {
     transform: translateY(-3px);
 }
 
-/* =========================================
-   8. FOOTER
-   ========================================= */
 footer {
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     padding: 40px 20px;
@@ -299,9 +292,6 @@ footer {
 .social-links a:hover { color: var(--accent); transform: translateY(-5px); }
 .copyright { color: var(--text-sec); font-size: 0.9rem; }
 
-/* =========================================
-   9. MODAL (ZOOM IMAGEN)
-   ========================================= */
 .modal {
     display: none; position: fixed; z-index: 9999;
     left: 0; top: 0; width: 100%; height: 100%;
@@ -319,28 +309,48 @@ footer {
 }
 @keyframes zoom { from {transform:scale(0.8); opacity:0} to {transform:scale(1); opacity:1} }
 
-/* =========================================
-   11. ANIMACIÓN FLUIDA (SIN SALTOS)
-   ========================================= */
-
 @keyframes softFade {
     0% { opacity: 0; }
     100% { opacity: 1; }
 }
 
 .animate-transition {
-    /* 0.5 segundos de suavidad pura */
     animation: softFade 0.5s ease-in-out forwards;
 }
-/* =========================================
-   12. RESPONSIVE (CELULARES)
-   ========================================= */
+
 @media (max-width: 768px) {
     .brand { font-size: 1.8rem; }
     .tab-btn { padding: 10px 15px; font-size: 0.9rem; }
     
-    .service-card { flex-direction: column; align-items: flex-start; gap: 15px; }
-    .service-price { text-align: left; }
+    .service-table-header { display: none; }
+    
+    .service-row {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "task"
+            "device"
+            "price"
+            "action";
+        gap: 10px;
+        text-align: center;
+        padding: 20px;
+        margin-bottom: 15px;
+        border-radius: 12px;
+        border: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .col-task { grid-area: task; font-size: 1.2rem; margin-bottom: 5px; }
+    .col-device { grid-area: device; font-style: italic; margin-bottom: 5px; }
+    .col-price { grid-area: price; font-size: 1.4rem; margin-bottom: 10px; }
+    .col-action { grid-area: action; justify-self: center; }
+    
+    .btn-icon-wsp {
+        width: 100%;
+        background-color: rgba(0, 194, 255, 0.1);
+        border-radius: 50px;
+        padding: 12px;
+    }
+    .btn-icon-wsp::after { content: " Consultar"; font-size: 1rem; margin-left: 8px; font-weight: 700; }
     
     .detail-layout { flex-direction: column; }
     .detail-title { font-size: 1.8rem; }

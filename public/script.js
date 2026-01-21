@@ -67,12 +67,25 @@ const products = [
 ];
 
 const servicesList = [
-    { title: "Formateo e Instalación de Windows", desc: "Instalación limpia W10/11 + Drivers + Office.", price: 18000 },
-    { title: "Mantenimiento y Limpieza", desc: "Limpieza profunda, pasta térmica y coolers.", price: 15000 },
-    { title: "Optimización de PC Lenta", desc: "Limpieza de virus y aceleración.", price: 8000 },
-    { title: "Instalación de Programas", desc: "Photoshop, Corel, Autocad, Juegos, etc.", price: 5000 },
-    { title: "Cambio de Disco a otro", desc: "Mano de obra para clonación o instalación.", price: 12000 }
+    { task: "Diagnóstico/Revisión", device: "TODO", price: "Gratis" },
+    { task: "Formateo e instalación de SO (LIMPIO SIN BACKUP)", device: "PC, NOTEBOOK, AIO", price: 18000 },
+    { task: "Formateo e instalación de SO (CON COPIA)", device: "PC, NOTEBOOK, AIO", price: 20000 },
+    { task: "Instalación de Programas", device: "PC, NOTEBOOK, AIO", price: "3000 c/u" },
+    { task: "Instalación y Configuración de Drivers", device: "PC, NOTEBOOK, AIO", price: 12000 },
+    { task: "Reparación de inicio de Windows", device: "PC, NOTEBOOK, AIO", price: 8000 },
+    { task: "Eliminación de malware", device: "PC, NOTEBOOK, AIO", price: 5000 },
+    { task: "Armado de PC Básica desde 0", device: "PC ESCRITORIO", price: 20000 },
+    { task: "Armado de PC Gamer desde 0", device: "PC ESCRITORIO", price: 30000 },
+    { task: "Cambio de Componentes", device: "PC ESCRITORIO", price: 5000 },
+    { task: "Limpieza de Componentes (Mantenimiento)", device: "PC, NOTEBOOK, AIO", price: 15000 },
+    { task: "Cambio de pantalla", device: "NOTEBOOK", price: 6000 },
+    { task: "Cambio de teclado", device: "NOTEBOOK", price: 5000 },
+    { task: "Cambio de batería", device: "NOTEBOOK", price: 5000 }
 ];
+
+// ==========================================
+// 4. LÓGICA DEL INICIO (INDEX.HTML)
+// ==========================================
 
 const productsContainer = document.getElementById("view-products");
 if (productsContainer) {
@@ -86,7 +99,7 @@ if (productsContainer) {
                 <img src="${imgUrl}" class="card-img" alt="${p.title}" onerror="this.src='https://placehold.co/600x400/222/FFF?text=Imagen+No+Disp'">
                 <div class="card-title">${p.title}</div>
                 <div class="card-price">$${p.price.toLocaleString("es-AR")}</div>
-
+                <div class="card-desc-short">${p.desc.substring(0, 80)}...</div>
                 <a href="product.html?id=${p.id}" class="btn-primary">VER DETALLES</a>
             </div>
         `;
@@ -102,21 +115,41 @@ if (productsContainer) {
     };
 }
 
+// RENDERIZADO DE LA TABLA DE SERVICIOS
 const servicesContainer = document.getElementById("view-services");
 if (servicesContainer) {
+    // 1. Crear encabezado de la tabla (Visible solo en PC por CSS)
+    const header = document.createElement("div");
+    header.className = "service-table-header";
+    header.innerHTML = `
+        <div>TIPO DE ARREGLO</div>
+        <div>EQUIPO</div>
+        <div>PRECIO</div>
+        <div style="text-align:center">CONTACTO</div>
+    `;
+    servicesContainer.appendChild(header);
+
+    // 2. Crear filas
     servicesList.forEach(s => {
-        const msg = `Hola! Me interesa el servicio que vi en tu pagina: ${s.title}.`;
+        const msg = `Hola Luciano! Necesito el servicio de: ${s.task} para mi ${s.device}.`;
         const link = `https://wa.me/${CELULAR_VENDEDOR}?text=${encodeURIComponent(msg)}`;
-        const item = document.createElement("div");
-        item.className = "service-card";
-        item.innerHTML = `
-            <div class="service-info"><h3>${s.title}</h3><p>${s.desc}</p></div>
-            <div style="text-align:right; min-width:120px;">
-                <div class="service-price">$${s.price.toLocaleString("es-AR")}</div>
-                <a href="${link}" target="_blank" style="display:inline-block; margin-top:8px; color:#00C2FF; font-weight:bold; text-decoration:none;"><i class="fab fa-whatsapp"></i> Consultar</a>
+        
+        // Formatear precio (si es número le pone signo $, si es texto lo deja igual)
+        let displayPrice = typeof s.price === 'number' ? `$${s.price.toLocaleString("es-AR")}` : s.price;
+
+        const row = document.createElement("div");
+        row.className = "service-row";
+        row.innerHTML = `
+            <div class="col-task">${s.task}</div>
+            <div class="col-device">${s.device}</div>
+            <div class="col-price">${displayPrice}</div>
+            <div class="col-action">
+                <a href="${link}" target="_blank" class="btn-icon-wsp" title="Consultar por WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
             </div>
         `;
-        servicesContainer.appendChild(item);
+        servicesContainer.appendChild(row);
     });
 }
 
@@ -125,28 +158,37 @@ window.switchTab = function(tabName) {
     const vs = document.getElementById("view-services");
     const bp = document.getElementById("tab-products");
     const bs = document.getElementById("tab-services");
+
     vp.style.display = "none";
     vs.style.display = "none";
+    
     vp.classList.remove("animate-transition");
     vs.classList.remove("animate-transition");
+
     bp.classList.remove("active");
     bs.classList.remove("active");
+
     let targetView;
     if (tabName === 'products') {
         targetView = vp;
-        targetView.style.display = "flex";
+        targetView.style.display = "flex"; 
         bp.classList.add("active");
     } else {
         targetView = vs;
         targetView.style.display = "block";
         bs.classList.add("active");
     }
-    void targetView.offsetWidth; 
 
+    void targetView.offsetWidth; 
     targetView.classList.add("animate-transition");
 }
 
+
+// ==========================================
+// 5. LÓGICA DEL DETALLE (PRODUCT.HTML)
+// ==========================================
 const detailTitle = document.getElementById("prod-title");
+
 if (detailTitle) {
     const params = new URLSearchParams(window.location.search);
     const id = Number(params.get('id'));
@@ -156,7 +198,7 @@ if (detailTitle) {
         detailTitle.innerText = p.title;
         document.getElementById("prod-price").innerText = `$${p.price.toLocaleString("es-AR")}`;
         document.getElementById("prod-desc").innerText = p.desc;
-    
+        
         const specsList = document.getElementById("prod-specs");
         if(specsList && p.specs) {
             specsList.innerHTML = ""; 
@@ -177,7 +219,9 @@ if (detailTitle) {
             const thumb = document.createElement("img");
             thumb.src = imgSrc.startsWith("img/") ? imgSrc : "https://placehold.co/100x100/222/FFF?text=Foto"; 
             
-            thumb.className = index === 0 ? "thumb active" : "thumb";
+            thumb.className = "thumb";
+            if (index === 0) thumb.classList.add("active");
+
             thumb.onclick = () => {
                 mainImg.src = thumb.src; 
                 document.querySelectorAll(".thumb").forEach(t => t.classList.remove("active"));
