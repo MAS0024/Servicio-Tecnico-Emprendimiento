@@ -95,7 +95,6 @@ if (productsContainer) {
                 <img src="${imgUrl}" class="card-img" alt="${p.title}" onerror="this.src='https://placehold.co/600x400/222/FFF?text=Imagen+No+Disp'">
                 <div class="card-title">${p.title}</div>
                 <div class="card-price">$${p.price.toLocaleString("es-AR")}</div>
-                <div class="card-desc-short">${p.desc.substring(0, 80)}...</div>
                 <a href="product.html?id=${p.id}" class="btn-primary">VER DETALLES</a>
             </div>
         `;
