@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Producto</title>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" style="color:white; text-decoration:none; display:flex; align-items:center; justify-content:center; gap:10px;">
+            <i class="fas fa-arrow-left"></i> Volver al Catálogo
+        </a>
+    </header>
+
+    <main class="container">
+        <div class="detail-layout">
+            <div class="gallery-col">
+                <img id="main-image" src="" class="main-img" alt="Producto">
+                <div class="thumbs" id="thumbs-container"></div>
+            </div>
+
+            <div class="info-col">
+                <h1 id="prod-title" class="detail-title">Cargando...</h1>
+                <div id="prod-price" class="detail-price">...</div>
+                
+                <p id="prod-desc" class="detail-desc"></p>
+
+                <div class="specs-box">
+                    <h3><i class="fas fa-microchip"></i> Especificaciones Técnicas</h3>
+                    <ul id="prod-specs" class="specs-list">
+                        </ul>
+                </div>
+
+                <a id="btn-wsp" href="#" target="_blank" class="btn-whatsapp-large">
+                    <i class="fab fa-whatsapp" style="font-size: 1.5rem;"></i>
+                    CONSULTAR DISPONIBILIDAD
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <p class="copyright">&copy; 2024 Luciano Computación. Buenos Aires.</p>
+        </div>
+    </footer>
+
+    <div id="modal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

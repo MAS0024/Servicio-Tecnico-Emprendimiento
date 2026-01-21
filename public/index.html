@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda & Servicio Tecnico</title>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1 class="brand">⚡ M.A.S Computacion</h1>
+        <p style="color: #888; margin-top: 5px;">Venta de Netbooks y Servicio Tecnico Especializado</p>
+    </header>
+
+    <nav class="category-menu">
+        <button id="tab-products" class="tab-btn active" onclick="switchTab('products')">
+            <i class="fas fa-laptop"></i> Venta de Equipos
+        </button>
+        <button id="tab-services" class="tab-btn" onclick="switchTab('services')">
+            <i class="fas fa-tools"></i> Servicio Tecnico
+        </button>
+    </nav>
+
+    <main class="container">
+        <div id="view-products" class="cards-grid">
+            </div>
+
+        <div id="view-services" class="services-container" style="display: none;">
+            </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <!--<div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>-->
+            <p class="copyright">&copy; 2026 - M.A.S Computacion. Buenos Aires. Argentina</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
