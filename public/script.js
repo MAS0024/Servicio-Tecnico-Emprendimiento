@@ -67,11 +67,11 @@ const products = [
 ];
 
 const servicesList = [
-    { title: "Formateo e Instalación de Windows", desc: "Instalación limpia W10/11 + Drivers + Office.", price: 15000 },
-    { title: "Mantenimiento y Limpieza", desc: "Limpieza profunda, pasta térmica y coolers.", price: 18000 },
+    { title: "Formateo e Instalación de Windows", desc: "Instalación limpia W10/11 + Drivers + Office.", price: 18000 },
+    { title: "Mantenimiento y Limpieza", desc: "Limpieza profunda, pasta térmica y coolers.", price: 15000 },
     { title: "Optimización de PC Lenta", desc: "Limpieza de virus y aceleración.", price: 8000 },
-    { title: "Instalación de Programas", desc: "Photoshop, Corel, Autocad, Juegos.", price: 5000 },
-    { title: "Cambio de Disco a SSD", desc: "Mano de obra para clonación o instalación.", price: 12000 }
+    { title: "Instalación de Programas", desc: "Photoshop, Corel, Autocad, Juegos, etc.", price: 5000 },
+    { title: "Cambio de Disco a otro", desc: "Mano de obra para clonación o instalación.", price: 12000 }
 ];
 
 const productsContainer = document.getElementById("view-products");
